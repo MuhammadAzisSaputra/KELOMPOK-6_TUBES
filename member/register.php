@@ -1,11 +1,10 @@
 <?php
-    require_once './includes/koneksi.php';
 
     if (isset($_SESSION['level'])) {
         if ($_SESSION['level'] == 'admin') {
-            register("Location: index.php");
-        } else if ($_SESSION['level'] == 'user') {
-            register("Location: register.php");
+            header("Location: index.php");
+        } else if ($_SESSION['level'] == 'member') {
+            header("Location: dashboard.php");
         }
     }
 ?>
@@ -25,12 +24,12 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!--CSS-->
-    <link href="register.css" rel="stylesheet">
+    <link href="asset/css/register.css" rel="stylesheet">
     <!--JS-->
     <script src="asset/js/jquery-3.2.1.slim.min.js"></script>
     <script src="asset/js/popper.min.js"></script>
     <script src="asset/js/bootstrap.min.js"></script>
-    <title>Register</title>
+    <title>Your Session</title>
 </head>
 
 <body class="bg-gradient-primary">
@@ -43,13 +42,13 @@
                     <div class="col-lg-5 d-none d-lg-block bg-register-image">
                         <ul class="flex-list">
                             <li class="foruser li1"><a href="register.html" class="btn btn-success">Register</a><img
-                                    src="asset/avatarlogin.png"
+                                    src="asset/gambar/avatarlogin.png"
                                     style="width: 100px; margin-bottom: 150px; margin-top: -25px;"></li>
                             <li class="foruser li2"><a href="login.html" class="btn btn-primary">Login</a><img
-                                    src="asset/avatarregis.png"
+                                    src="asset/gambar/avatarregis.png"
                                     style="width: 100px; margin-bottom: 150px; margin-top: -25px;"></li>
                             <li class="foruser li3"><a href="forgot.html" class="btn btn-danger">Forgot Password</a><img
-                                    src="asset/avatarforgetpass.png"
+                                    src="asset/gambar/avatarforgetpass.png"
                                     style="width: 100px; margin-bottom: 150px; margin-top: -25px;"></li>
                         </ul>
                     </div>
@@ -83,9 +82,7 @@
                                     <input type="password" class="form-control form-control-user"
                                         id="exampleInputPassword" placeholder="Password" required data-eye name="password">
                                 </div>
-                                <div class="validasi-password">
-
-                                </div>
+                                <div class="validasi-password"></div>
                                 <button type="submit" class="btn btn-success btn-user btn-block">
                                     Register Account
                                 </button>
@@ -104,45 +101,47 @@
         </div>
 
     </div>
+
     <script>
 
-        $(document).ready(function() {
-            $('#exampleInputEmail').blur(function() {
-                var email = $(this).val();
-                $.ajax({
-                    type    : 'POST',
-                    url     : 'user.php?aksi=validasi',
-                    data    : 'email='+email,
-                    success : function(data) {
-                        $('#validasi-email').html(data);
-                    }
-                })
-            });
-
-        $('#form').submit(function() {
-            if ($('#nama').val().length < 8) {
-                $('#validasi-nama').html('<p class="text-danger">Silahkan isi nama anda min 8 karakter </p>');
-                return false;
+$(document).ready(function() {
+    $('#exampleInputEmail').blur(function() {
+        var email = $(this).val();
+        $.ajax({
+            type    : 'POST',
+            url     : 'member.php?action=validasi',
+            data    : 'email='+email,
+            success : function(data) {
+                $('#validasi-email').html(data);
             }
+        })
+    });
 
-            if ($('#email').val().length == 0) {
-                $('#validasi-email').html('<p class="text-danger">Silahkan isi email anda </p>');
-                return false;
-            }
+$('#form').submit(function() {
+    if ($('#nama').val().length < 8) {
+        $('#validasi-nama').html('<p class="text-danger">Silahkan isi nama anda min 8 karakter </p>');
+        return false;
+    }
 
-            if ($('#username').val().length < 5) {
-                $('#validasi-username').html('<p class="text-danger">Silahkan isi username anda min 5 karakter </p>');
-                return false;
-            }
+    if ($('#email').val().length == 0) {
+        $('#validasi-email').html('<p class="text-danger">Silahkan isi email anda </p>');
+        return false;
+    }
 
-            if ($('#password').val().length < 8) {
-                $('#validasi-password').html('<p class="text-danger">Silahkan isi password anda min 8 karakter </p>');
-                return false;
-            }
-        });
-    }):
-    
-    </script>
+    if ($('#username').val().length < 5) {
+        $('#validasi-username').html('<p class="text-danger">Silahkan isi username anda min 5 karakter </p>');
+        return false;
+    }
+
+    if ($('#password').val().length < 8) {
+        $('#validasi-password').html('<p class="text-danger">Silahkan isi password anda min 8 karakter </p>');
+        return false;
+    }
+});
+}):
+
+    </script>   
+   
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -153,6 +152,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    
 
 </body>
 

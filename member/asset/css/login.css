@@ -76,13 +76,13 @@ li {
 
 
 .bg-login-image {
-    background-image: url(../background.jpg);
+    background-image: url(../gambar/background.jpg);
 }
 
 .bg-gradient-primary {
     background-color: none;
     background-image: none;
-    background-image: url(../library.jpg);
+    background-image: url(../gambar/library.jpg);
     background-size: contain;
 }
 
