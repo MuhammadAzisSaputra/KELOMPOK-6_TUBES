@@ -1,5 +1,7 @@
-<?php require 'includes/koneksi.php'; 
-
+<?php 
+require 'includes/koneksi.php'; 
+$nama=$_SESSION["nama"];
+$nama=$_SESSION["email"];
 ?>
 
 <!DOCTYPE html>
@@ -155,10 +157,10 @@ aria-hidden="true">
     </div>
     <form action="cekpinjam.php" method="post" style="margin-top: 70px">
         <label for="nama" style="padding-top:13px">&nbsp;Nama :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input id="nama" class="form-content" type="text" name="nama" autocomplete="on" required />
+        <span name="nama"><?php echo $_SESSION['nama']; ?></span>
         <div class="form-border"></div>
         <label for="email" style="padding-top:13px">&nbsp;Email :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input id="email" class="form-content" type="email" name="email" autocomplete="on" required />
+        <span name="email"><?php echo $_SESSION['email']; ?></span>
         <div class="form-border"></div>
         <label for="nama_buku" style="padding-top:13px">&nbsp;Book:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><br/>
         <select name="nama_buku" class="form-select" aria-label="Default select example">
