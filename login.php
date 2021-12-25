@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 if(isset($_SESSION['level'])) {
     if($_SESSION['level'] == 'admin') {
         header("Location: admin.php");
@@ -7,6 +7,7 @@ if(isset($_SESSION['level'])) {
         header("Location: dashboard.php");
     }
 }
+session_start();
 
 ?>
 
@@ -47,6 +48,80 @@ if(isset($_SESSION['level'])) {
     .bg-login-image {
         background-image: url(asset/gambar/background.jpg);
     }
+
+    ul {
+        list-style: none;
+        margin-left: 300px;
+        padding-right: 0px;
+        padding-left: 0px;
+        text-align: center;
+    }
+
+    li {
+        color: white;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+    }
+
+    .li1 {
+        background-color: #F8C471;
+        height: 200px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        box-shadow: 0 5px #a0c3f7;
+    }
+
+    .li2 {
+        background-color: #F8C471;
+        height: 200px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        box-shadow: 0 5px #a0c3f7;
+    }
+
+    .li3 {
+        background-color: #F8C471;
+        height: 200px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        box-shadow: 0 5px #a0c3f7;
+    }
+
+    .l1:active {
+        position: relative;
+        top: 7px;
+        box-shadow: none;
+    }
+
+    .li2:active {
+        position: relative;
+        top: 7px;
+        box-shadow: none;
+    }
+
+    .li3:active{
+        position: relative;
+        top: 7px;
+        box-shadow: none;
+    }
+
+    .flex-list {
+        display: wrap;
+    }
+
+    .flex-list li {
+        width: 155px;
+    }
+
+    .foruser {
+        opacity: 2;
+    }
+
+    .foruser:hover {
+        opacity: 0.9;
+    }
+
 </style>
 
 <body class="bg-gradient-primary">
@@ -81,56 +156,53 @@ if(isset($_SESSION['level'])) {
                                             </div>
                                             <div class="container" style="height: 91vh;">
                                                 <?php if (isset($_SESSION['sukses'])) { ?>
-                                                    <div class="alert alert-primary" role="alert">
-                                                      <?=$_SESSION['sukses1']; ?>
+                                                    <div class="alert alert-success" role="alert">
+                                                        <?=$_SESSION['sukses']; ?>
+                                                    </div>
+                                                <?php }else if(isset($_SESSION['gagal'])){ ?>
+                                                    <div class="alert alert-danger" role="alert">
+                                                      <?=$_SESSION['gagal']; ?>
                                                   </div>
-                                                  <div class="alert alert-success" role="alert">
-                                                      <?=$_SESSION['sukses2']; ?>
-                                                  </div>
-                                              <?php }else if(isset($_SESSION['gagal'])){ ?>
-                                                <div class="alert alert-danger" role="alert">
-                                                  <?=$_SESSION['gagal']; ?>
-                                              </div>
-                                          <?php } ?>
-                                          <form class="user" method="POST" action="member.php?action=login">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="email" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" name="password" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                    <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                              <?php } ?>
+                                              <form class="user" method="POST" action="member.php?action=login">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control form-control-user"
+                                                    id="exampleInputEmail" aria-describedby="emailHelp"
+                                                    placeholder="Enter Email Address..." name="email" required />
                                                 </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control form-control-user"
+                                                    id="exampleInputPassword" placeholder="Password" name="password" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox small">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                        <label class="custom-control-label" for="customCheck">Remember
+                                                        Me</label>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                    Login
+                                                </button>
+                                            </form>
+                                            <hr>
+                                            <div class="text-center">
+                                                <a class="small" href="forgot.html">Forgot Password?</a>
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                Login
-                                            </button>
-                                        </form>
-                                        <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="forgot.html">Forgot Password?</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="small" href="register.html">Create an Account!</a>
+                                            <div class="text-center">
+                                                <a class="small" href="register.html">Create an Account!</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
 
             </div>
 
-        </div>
-
-    </body>
-    </html>
+        </body>
+        </html>
