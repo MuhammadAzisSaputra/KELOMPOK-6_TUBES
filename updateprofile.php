@@ -76,20 +76,21 @@ if ($_SESSION['level'] == 'admin') {
         <div class="card-body">
             <form class="needs-validation" method="POST">
                 <?php
-                $id = $_POST['id_member'];
+                $id_member = $_POST['id_member'];
                 $query = "SELECT * FROM user_library WHERE id_member=$id_member";
                 $hasil = mysqli_query($koneksi, $query);
 
                 foreach($hasil as $data){
-                    ?>
+                ?>
                     <h5 class="modal-title">Edit Profil Anda</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="form-row">
+                    <input type="number" hidden name="id_member" value="<?php echo $_POST['id_member'];?>">
                         <div class="col-md-12 mb-3">
                             <label for="name">Nama</label>
-                            <input type="text" class="form-control" id="name" value="<?= $_SESSION['nama'] ?> " name="nama"
+                            <input type="text" class="form-control" id="name" value="<?php echo $data['nama'];?>" name="nama"
                             placeholder="Input nama anda" required>
                             <div class="invalid-feedback">
                                 Silahkan Isi nama anda
@@ -97,7 +98,7 @@ if ($_SESSION['level'] == 'admin') {
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" value="<?= $_SESSION['email'] ?> " name="email" id="email"
+                            <input type="text" class="form-control" value="<?php echo $data['email'];?>" name="email" id="email"
                             placeholder="Input email anda" required>
                             <div class="invalid-feedback">
                                 Silahkan Isi email anda
@@ -106,7 +107,7 @@ if ($_SESSION['level'] == 'admin') {
                         <div class="col-md-12 mb-3">
                             <label for="username">Username</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="username" value="<?= $_SESSION['username'] ?> " name="username" placeholder="Input username anda" required>
+                                <input type="text" class="form-control" id="username" value="<?php echo $data['username'];?>" name="username" placeholder="Input username anda" required>
                                 <div class="invalid-feedback">
                                     Silahkan isi username anda
                                 </div>
@@ -115,29 +116,53 @@ if ($_SESSION['level'] == 'admin') {
                         <div class="col-md-12 mb-3">
                             <label for="alamat">Alamat</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="alamat" value="<?= $_SESSION['alamat'] ?> " name="alamat" placeholder="Input alamat anda" required>
+                                <input type="text" class="form-control" id="alamat" value="<?php echo $data['alamat'];?>" name="alamat" placeholder="Input alamat anda" required>
                                 <div class="invalid-feedback">
                                     Silahkan isi alamat anda
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="nomor_tlp">Nomor Telepon</label>
+                            <label for="no_telepon">Nomor Telepon</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="nomor_tlp" value="<?= $_SESSION['no_telepon'] ?> " name="nomor_tlp" placeholder="Input no.telepon anda" required>
+                                <input type="text" class="form-control" id="no_telepon" value="<?php echo $data['no_telepon'];?>" name="no_telepon" placeholder="Input no.telepon anda" required>
                                 <div class="invalid-feedback">
                                     Silahkan isi no.telepon anda
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-5">Update</button>
+
+                    <?php } ?>
+
+                    <button type="submit" class="btn btn-primary mt-5" name="btnUbah" >Update</button>
                     <a href="dashboard.php" class="btn btn-secondary mt-5">Close</a>
                 </form>
+
+                <?php
+                 if(isset($_POST['btnUbah'])){
+                    $no = $_POST['id_member'];
+                    $nama = $_POST['nama'];
+                    $email = $_POST['email'];
+                    $username = $_POST['username'];
+                    $alamat = $_POST['alamat'];
+                    $no_telepon = $_POST['no_telepon'];
+
+                    if ($koneksi){
+                        $sql = "UPDATE user_library SET nama='$nama',email='$email',username='$username',alamat='$alamat', no_telepon='$no_telepon' WHERE id_member=$no";
+                        mysqli_query($koneksi,$sql);
+                        echo "<p class='alert alert-success text-center'><b>Perubahan Akun Berhasil Disimpan. <a href='profil.php' class='btn btn-primary'>Kembali</a></b></p>";
+                      } elseif ($koneksi->connect_error) {
+                            echo "<p class='alert alert-danger text-center><b>Terjadi kesalahan: $error</b></p>";
+                        }       
+                    }
+                ?>
             </div>
         </div>
     </div><br>
+    
     <?php
     include('footer.php');
     ?>
+
 </body>

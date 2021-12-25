@@ -18,10 +18,10 @@ if( $_GET['action'] == 'register') {
     $hasil = mysqli_query($koneksi, $sql);
 
     if ($hasil) {
-        $_SESSION['sukses'] = 'Registrasi anda berhasil !!! Anda sekarang member';
+        $_SESSION['sukses'] = 'Registrasi anda berhasil !!! Anda sekarang member' . $nama;
         header('Location: login.php');
     } else {
-        $_SESSION['gagal'] = 'Mohon maaf, registrasi anda gagal';
+        $_SESSION['gagal1'] = 'Mohon maaf, registrasi anda gagal';
     }
 }
 
@@ -55,7 +55,7 @@ if ($_GET['action'] == 'login') {
            header("Location: admin.php");
        } else {
         session_unset();
-        $_SESSION['gagal'] = 'email atau kata Sandi salah!';
+        $_SESSION['gagal'] = 'Email atau kata Sandi salah!';
         header("Location: login.php");
     }
 }
