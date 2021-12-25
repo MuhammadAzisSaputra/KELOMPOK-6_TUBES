@@ -1,11 +1,12 @@
 <?php
 	require_once 'includes/koneksi.php';
     $_SESSION['email'];
+    $_SESSION['nama'];
 ?>
 <?php
  
-$nama = $_POST['nama'];
-$emailll = $_POST['email'];
+$nama = $_SESSION['nama'];
+$emailll = $_SESSION['email'];
 $nama_buku = $_POST['nama_buku'];
 $tgl_pinjam = date("d-m-Y");
 $tujuh_hari = mktime(0,0,0,date("n"),date("j")+7,date("Y"));
