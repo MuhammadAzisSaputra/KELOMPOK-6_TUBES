@@ -3,10 +3,11 @@
 session_start();
 
 
-require_once 'includes/koneksi.php';
-if(($_SESSION['level']!="member")||($_SESSION['level']=="member")){
-    header("location:login.php?anda-bukan-admin");
+include ('includes/koneksi.php');
+if($_SESSION['level'] == 'member') {
+    header("location:index.php");
 }
+
 # Pagination
 # Konfigurasi
 $jumlahDataPerHalaman = 5;
@@ -215,9 +216,6 @@ include('headeradmin.php');
 
 </form> 
 
-<?php
-include('footer.php');
-?>
 
 </body>
 

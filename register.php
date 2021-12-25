@@ -44,6 +44,83 @@ if (isset($_SESSION['level'])) {
         background-image: url(asset/gambar/library2.jpeg);
         background-size: contain;
     }
+    ul {
+        list-style: none;
+        margin-left: 300px;
+        padding-right: 0px;
+        padding-left: 0px;
+        text-align: center;
+    }
+
+    li {
+        color: white;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+    }
+
+    .li1 {
+        background-color: #F8C471;
+        height: 265px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        box-shadow: 0 5px #a0c3f7;
+    }
+
+    .li2 {
+        background-color: #F8C471;
+        height: 265px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        box-shadow: 0 5px #a0c3f7;
+    }
+
+    .li3 {
+        background-color: #F8C471;
+        height: 265px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        box-shadow: 0 5px #a0c3f7;
+    }
+
+    .l1:active {
+        position: relative;
+        top: 7px;
+        box-shadow: none;
+    }
+
+    .li2:active {
+        position: relative;
+        top: 7px;
+        box-shadow: none;
+    }
+
+    .li3:active{
+        position: relative;
+        top: 7px;
+        box-shadow: none;
+    }
+
+    .flex-list {
+        display: wrap;
+    }
+
+    .flex-list li {
+        width: 155px;
+    }
+
+
+    .bg-register-image {
+        background-image: url(asset/gambar/background.jpg)
+    }
+
+    .foruser {
+        opacity: 2;
+    }
+
+    .foruser:hover {
+        opacity: 0.9;
+    }
 </style>
 
 <body class="bg-gradient-primary">
@@ -52,7 +129,7 @@ if (isset($_SESSION['level'])) {
 
         <div class="card o-hidden border-0 shadow-lg my-3">
             <div class="card-body p-0">
-                <div class="row" style="height: 600px;">
+                <div class="row" style="height: 800px;">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image">
                         <ul class="flex-list">
                             <li class="foruser li1"><a href="register.php" class="btn btn-success">Register</a><img
@@ -75,31 +152,31 @@ if (isset($_SESSION['level'])) {
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user" id="name" name="nama"
                                                 placeholder="Name" required>
-                                                <div id="validasi-name">
-
-                                                </div>
-
+                                                <div id="validasi-name"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="alamat" name="alamat"
+                                                placeholder="Adress" required>
+                                                <div id="validasi-alamat"></div>
                                             </div>
                                             <div class="form-group">
                                                 <input type="email" class="form-control form-control-user" id="email" name="email"
                                                 placeholder="Email Address" required>
-                                                <div id="validasi-email">
-
-                                                </div>
-
+                                                <div id="validasi-email"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="no_telepon" name="no_telepon"
+                                                placeholder="Phone Number" required>
+                                                <div id="validasi-no_telpon"></div>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" required>
-                                                <div id="validasi-username">
-
-                                                </div>
-
+                                                <div id="validasi-username"></div>
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" class="form-control form-control-user"
                                                 id="password" placeholder="Password" name="password">
                                                 <div id="validasi-password"></div>
-
                                             </div>
                                             <button type="submit" class="btn btn-success btn-user btn-block">
                                                 Register Account
@@ -124,29 +201,29 @@ if (isset($_SESSION['level'])) {
 
                     $(document).ready(function() {
                         $('#email').blur(function(){
-                           event.preventDefault();
-                           var email = $(this).val();
-                           $.ajax({
-                               type    : 'POST',
-                               url     : 'member.php?action=validasi-email',
-                               data    : 'email='+email,
-                               success : function(data){
-                                   $('#validasi-email').html(data);
-                               }
-                           })
-                       })
+                         event.preventDefault();
+                         var email = $(this).val();
+                         $.ajax({
+                             type    : 'POST',
+                             url     : 'member.php?action=validasi-email',
+                             data    : 'email='+email,
+                             success : function(data){
+                                 $('#validasi-email').html(data);
+                             }
+                         })
+                     })
                         $('#username').blur(function(){
-                           event.preventDefault();
-                           var username = $(this).val();
-                           $.ajax({
-                               type    : 'POST',
-                               url     : 'member.php?action=validasi-username',
-                               data    : 'username='+username,
-                               success : function(data){
-                                   $('#validasi-username').html(data);
-                               }
-                           })
-                       })
+                         event.preventDefault();
+                         var username = $(this).val();
+                         $.ajax({
+                             type    : 'POST',
+                             url     : 'member.php?action=validasi-username',
+                             data    : 'username='+username,
+                             success : function(data){
+                                 $('#validasi-username').html(data);
+                             }
+                         })
+                     })
 
 
                         $('#form').submit(function() {
