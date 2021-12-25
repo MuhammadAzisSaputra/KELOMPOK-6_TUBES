@@ -1,4 +1,6 @@
-<?php require 'includes/koneksi.php'; ?>
+<?php require 'includes/koneksi.php'; 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -151,26 +153,22 @@ aria-hidden="true">
         <h2>Borrow Books</h2>
         <div class="underline-title"></div>
     </div>
-    <form action="cekpinjam.php" method="post">
+    <form action="cekpinjam.php" method="post" style="margin-top: 70px">
         <label for="nama" style="padding-top:13px">&nbsp;Nama :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <input id="nama" class="form-content" type="text" name="nama" autocomplete="on" required />
         <div class="form-border"></div>
-        <label for="username" style="padding-top:13px">&nbsp;Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input id="username" class="form-content" type="text" name="username" autocomplete="on" required />
+        <label for="email" style="padding-top:13px">&nbsp;Email :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input id="email" class="form-content" type="email" name="email" autocomplete="on" required />
         <div class="form-border"></div>
         <label for="nama_buku" style="padding-top:13px">&nbsp;Book:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><br/>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Pilih Buku</option>
+        <select name="nama_buku" class="form-select" aria-label="Default select example">
+          <option disabled selected>Pilih Buku</option>
           <?php
           $sql = mysqli_query($koneksi, "SELECT * FROM stok_buku"); 
           while($row = mysqli_fetch_array($sql)) { ?>
               <option value="<?=$row['id_buku']?>"><?=$row['judul']?></option>
           <?php } ?>
       </select>
-      <div class="form-border"></div>
-      <label for="tgl_pinjam" style="padding-top:22px">&nbsp;Date Borrowed :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></br/>
-      <input id="tgl_pinjam" class="form-content" type="date" name="tglpinjam" required />
-      <div class="form-border"></div>
       <center><input id="submit-btn" type="submit" name="submit" value="Submit" /></center>
 
   </form>
